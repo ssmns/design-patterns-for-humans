@@ -458,6 +458,58 @@ System.out.println(door.getWidth());
 </details>
 
 
+
+<details>
+  <summary>Rust</summary>
+
+<div dir="ltr">
+
+```rust
+// Define a trait for Door
+trait Door {
+    fn get_width(&self) -> u32;
+    fn get_height(&self) -> u32;
+}
+
+// Define a struct for WoodenDoor
+struct WoodenDoor {
+    width: u32,
+    height: u32,
+}
+
+// Implement the Door trait for WoodenDoor
+impl Door for WoodenDoor {
+    fn get_width(&self) -> u32 {
+        self.width
+    }
+
+    fn get_height(&self) -> u32 {
+        self.height
+    }
+}
+
+// Define a factory function to create WoodenDoor
+struct DoorFactory;
+
+impl DoorFactory {
+    fn make_door(width: u32, height: u32) -> WoodenDoor {
+        WoodenDoor { width, height }
+    }
+}
+
+fn main() {
+    // Create a door using the factory
+    let door = DoorFactory::make_door(10, 10);
+    
+    // Print the height and width of the door
+    println!("Height: {}", door.get_height());
+    println!("Width: {}", door.get_width());
+}
+```
+</div>
+</details>
+
+
 <br>
 
 ---
