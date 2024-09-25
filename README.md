@@ -923,6 +923,74 @@ marketingManager.takeInterview();
 </div>
 </details>
 
+<details>
+  <summary>Rust</summary>
+
+<div dir="ltr">
+
+```rust
+// Define a trait for Interviewer
+trait Interviewer {
+    fn ask_questions(&self);
+}
+
+// Define a struct for Developer
+struct Developer;
+
+impl Interviewer for Developer {
+    fn ask_questions(&self) {
+        println!("Asking about design patterns");
+    }
+}
+
+// Define a struct for CommunityExecutive
+struct CommunityExecutive;
+
+impl Interviewer for CommunityExecutive {
+    fn ask_questions(&self) {
+        println!("Asking about community building");
+    }
+}
+
+// Define a trait for HiringManager
+trait HiringManager {
+    fn make_interviewer(&self) -> Box<dyn Interviewer>;
+    
+    fn take_interview(&self) {
+        let interviewer = self.make_interviewer();
+        interviewer.ask_questions();
+    }
+}
+
+// Define a struct for DevelopmentManager
+struct DevelopmentManager;
+
+impl HiringManager for DevelopmentManager {
+    fn make_interviewer(&self) -> Box<dyn Interviewer> {
+        Box::new(Developer)
+    }
+}
+
+// Define a struct for MarketingManager
+struct MarketingManager;
+
+impl HiringManager for MarketingManager {
+    fn make_interviewer(&self) -> Box<dyn Interviewer> {
+        Box::new(CommunityExecutive)
+    }
+}
+
+fn main() {
+    let dev_manager = DevelopmentManager;
+    dev_manager.take_interview();
+
+    let marketing_manager = MarketingManager;
+    marketing_manager.take_interview();
+}
+
+```
+</div>
+</details>
 
 <br>
 
